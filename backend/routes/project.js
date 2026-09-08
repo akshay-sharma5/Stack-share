@@ -4,7 +4,7 @@ export const projectRouter=Router()
 
 import {logger,authToken} from '../middlewares/auth.js'
 
-import {Project} from '../db/db.js'
+import {Project,User} from '../db/db.js'
 import mongoose from 'mongoose'
 
 projectRouter.get('/all',logger,async(req,res)=>{
@@ -86,6 +86,27 @@ projectRouter.put('/',logger,authToken,async(req,res)=>{
     res.json({"message":"Project updated successfully"})
     }
 
+})
+
+projectRouter.put('/addMember',logger,authToken,async(req,res)=>{
+    const projectId=req.body.projectId;
+    const memberEmail=req.body.email;
+
+    const response =await User.findOne({email:memberEmail})
+
+    if(!response){
+        return res.status(400).json({"message":"User not found"})
+    }
+    
+    const memberId=response._id;
+
+
+    const project=await Project.updateOne(
+        {_id:projectId},
+        {$push:{members:new mongoose.Types.ObjectId(memberId)}}
+    )
+    
+    res.json({"message":"Member added successfully"})
 })
 
 
