@@ -18,13 +18,12 @@ function authToken(req,res,next){
     const verifyToken=jwt.verify(token,process.env.JWT_SECRET)
 
     if(verifyToken){
-        console.log("valid token")
         req.id=verifyToken.id
         next()
         
     }
     else{
-        return res.status(400).json({"message":"Invalid token"})
+        return res.status(400).json({"message":"Unauthorized acess"})
     }
 }
 
