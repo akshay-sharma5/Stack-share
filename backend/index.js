@@ -6,6 +6,8 @@ const cors=require('cors')
 
 const {userRouter}=require('../backend/routes/user.js')
 
+const {projectRouter} =require('../backend/routes/project.js')
+
 const mongoose=require('mongoose')
 
 
@@ -14,6 +16,8 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/user',userRouter)
+
+app.use('/projects',projectRouter)
 
 async function DBconnect(){
     try{

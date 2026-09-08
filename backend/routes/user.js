@@ -59,7 +59,7 @@ userRouter.post('/signin',logger,async (req,res)=>{
                 return res.status(400).json({"message":"Invalid password"})
             }
             else{
-                const token=jwt.sign({email:email},process.env.JWT_SECRET)
+                const token=jwt.sign({"id":Usr._id},process.env.JWT_SECRET)
                 res.json({"message":"Signed in succesfully","token":token})
             }
 
@@ -73,7 +73,7 @@ userRouter.post('/signin',logger,async (req,res)=>{
 
 
 userRouter.get('/profile',logger,authToken,async(req,res)=>{
-    const Usr=await User.findOne({"email":req.email})
+    const Usr=await User.findOne({_id:req.id})
     res.json({
         "email":Usr.email,
         "name":Usr.name

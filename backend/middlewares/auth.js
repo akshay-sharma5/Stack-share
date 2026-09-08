@@ -19,7 +19,7 @@ function authToken(req,res,next){
 
     if(verifyToken){
         console.log("valid token")
-        req.email=verifyToken.email
+        req.id=verifyToken.id
         next()
         
     }
