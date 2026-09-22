@@ -1,4 +1,3 @@
-import { useState } from 'react'
 
 import './App.css'
 
@@ -6,9 +5,10 @@ import './App.css'
 function App() {
 
   return (
-    <div className='w-full min-h-screen bg-linear-to-b from-green-600 to-blue-800'>
+    <div className='flex w-full min-h-screen flex-col bg-linear-to-b from-green-600 to-blue-800'>
       <TopBar />
       <Hero/>
+      <Footer/>
     </div>
   )
 
@@ -31,7 +31,7 @@ function TopBar(){
 
 function Hero(){
   return(
-    <div className='flex mx-5 my-14 md:mx-70 md:my-50 justify-center flex-col'>
+    <div className='flex flex-1 mx-5 my-14 md:mx-70 md:my-20 justify-center flex-col'>
       <p className='font-bold text-5xl md:text-7xl text-white'>Build Fast. Build Together</p> 
       <br />
 
@@ -39,6 +39,23 @@ function Hero(){
        <p className='text-green-300 text-1xl md:text-2xl'>Pitch your next side-project ,recruit developers by tech stack, <br />
        and collaborate in real-time workplace</p>
      </center>
+    </div>
+  )
+}
+
+function Footer(){
+
+  return(
+    <div className='flex w-full h-full  bg-green-950 '>
+      <div>
+        <p className='text-white font-bold'>StackShare</p>
+        <p className='text-white '>Build Fast.Build Together</p>
+        
+      </div>
+      <div></div>
+      <div></div>
+      <div></div>
+    
     </div>
   )
 }
